@@ -24,13 +24,13 @@ class Piece:
         self.orientation = newOrienation
         # Update currentSides based on orientation
         if self.orientation == 0:
-            self.currentSides = str(self.originalSides[0]+self.originalSides[1]+self.originalSides[2]+self.originalSides[3])
+            self.currentSides = str(self.originalSides[0] + self.originalSides[1] + self.originalSides[2] + self.originalSides[3])
         elif self.orientation == 1:
             self.currentSides = str(self.originalSides[3] + self.originalSides[0] + self.originalSides[1] + self.originalSides[2])
         elif self.orientation == 2:
             self.currentSides = str(self.originalSides[2] + self.originalSides[3] + self.originalSides[0] + self.originalSides[1])
         else:
-            self.currentSides = str(self.originalSides[1] + self.originalSides[3] + self.originalSides[0] + self.originalSides[1])
+            self.currentSides = str(self.originalSides[1] + self.originalSides[2] + self.originalSides[3] + self.originalSides[0])
 
         self.top: str = self.currentSides[0]
         self.right: str = self.currentSides[1]
@@ -155,32 +155,17 @@ def buildBoard():
     
     print(f"----- {time.time() - startTime} seconds -----")
 
+def getBoardPieces():
+    print(" ----- Board Input ----- ")
+    print(" Example sides = aDcB ")
+    pieces = []
+    for i in range(1,10):
+        sides = input(f"Enter sides of square {i}: ")
+        pieces.append(Piece(i, sides))
+    return pieces
 
-# Actual Board
-piece1 = Piece(1,"aBCD")
-piece2 = Piece(2,"BDAc")
-piece3 = Piece(3,"ABDC")
-piece4 = Piece(4,"dcAB")
-piece5 = Piece(5,"CdAb")
-piece6 = Piece(6,"aDCb")
-piece7 = Piece(7,"cdAb")
-piece8 = Piece(8,"DCaB")
-piece9 = Piece(9,"DCbA")
-
-# Test Case to prove checkBoard works 
-#piece1 = Piece(1, "AAAA")
-#piece2 = Piece(2, "aaaa")
-#piece3 = Piece(3, "AAAA")
-#piece4 = Piece(4, "aaaa")
-#piece5 = Piece(5, "AAAA")
-#piece6 = Piece(6, "aaaa")
-#piece7 = Piece(7, "AAAA")
-#piece8 = Piece(8, "aaaa")
-#piece9 = Piece(9, "AAAA")
-
-pieces = [piece1,piece2,piece3,piece4,piece5,piece6,piece7,piece8,piece9]
+pieces = getBoardPieces()
 board = []
 
 startTime = time.time()
 buildBoard()
-#printBoard()
